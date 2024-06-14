@@ -20,6 +20,7 @@ h1
     margin-left: 10px;
     color: rgb(184, 184, 184);
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    cursor: pointer;
 }
 
 .register
@@ -29,4 +30,5 @@ h1
     width: 80px;
     border: 0;
     margin-right: 10px;
+    cursor: pointer;
 }

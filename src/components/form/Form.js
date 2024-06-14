@@ -45,8 +45,8 @@ const Form = () =>
     return(
         <div className={formstyles.container}>
             <div className={formstyles.headers}>
-                <p onClick={()=>setPage(0)}>Personal Details</p>
-                <p onClick={()=>setPage(1)}>Family Details</p>
+                <p onClick={()=>setPage(0)} className={page === 0 ? formstyles.active : ''}>Personal Details</p>
+                <p onClick={()=>setPage(1)} className={page === 1 ? formstyles.active : ''}>Family Details</p>
             </div>
 
             <div className={formstyles.view}>
