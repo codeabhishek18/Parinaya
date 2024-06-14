@@ -4,3 +4,9 @@
 {
   box-sizing: border-box;
 }
+
+:root
+{
+    --primary-color:rgb(117, 65, 65); 
+    --secondary-color:rgb(184, 184, 184);
+}

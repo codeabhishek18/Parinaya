@@ -1,0 +1,32 @@
+.container
+{
+    width: 100vw;
+    min-height: 100vh;
+    background-color: var(--secondary-color);
+}
+
+.navbar
+{
+    height: 60px;
+    width: 100%;
+    background-color: var(--primary-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h1
+{
+    margin-left: 10px;
+    color: rgb(184, 184, 184);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.register
+{
+    padding: 10px;
+    border-radius: 8px;
+    width: 80px;
+    border: 0;
+    margin-right: 10px;
+}

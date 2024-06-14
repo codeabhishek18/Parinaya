@@ -7,14 +7,23 @@
     padding: 20px;
 }
 
-input, select, button, .back
+input, select, .submit, .back
 {
     width: 100%;
     padding: 10px;
+    border: 0;
+    border-radius: 8px;
+}
+
+.submit
+{
+    background-color: var(--primary-color);
+    color: white;
 }
 
 .buttons
 {
+    margin-top: 10px;
     display: flex;
     column-gap: 20px;
 }

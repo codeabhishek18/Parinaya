@@ -7,10 +7,19 @@
     padding: 20px;
 }
 
-input, select, button
+input, select, .next
 {
     width: 100%;
     padding: 10px;
+    border-radius: 8px;
+    border:0;
+}
+
+.next
+{
+    margin-top: 10px;
+    background-color: var(--primary-color);
+    color: white;
 }
 
 label

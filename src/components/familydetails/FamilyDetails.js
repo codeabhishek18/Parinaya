@@ -54,7 +54,7 @@ const FamilyDetails = ({onComplete, handleBack}) =>
         <input name="demands" type="text" placeholder="Demands" value={familyData.demands} onChange={handleChange} required/>
         <div className={family.buttons}>
             <button className={family.back} onClick={handleBack}>Back</button>
-            <button>Submit</button>
+            <button className={family.submit}>Submit</button>
         </div>
     </form>
     )
