@@ -1,0 +1,25 @@
+.container
+{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    padding: 20px;
+}
+
+input, select, button
+{
+    width: 100%;
+    padding: 10px;
+}
+
+label
+{
+    font-size: 14px;
+    color: grey;
+}
+
+.file
+{
+    padding:0;
+}

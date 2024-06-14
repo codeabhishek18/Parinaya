@@ -1,0 +1,57 @@
+.container
+{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    column-gap: 20px;
+}
+
+.headers
+{
+    width: 30%;
+    padding: 20px;
+    line-height:40px;
+}
+
+.headers>p
+{
+    margin-top: 0;
+}
+
+.view
+{
+    width: 70%;
+    height: 100%;
+}
+
+@media screen and (max-width:450px) 
+{
+    .container
+    {
+        flex-direction: column;
+    }
+
+    .headers
+    {
+        width: 100%;
+        column-gap: 20px;
+        display: flex;
+        padding-bottom: 0;
+    }   
+
+    .headers>p
+    {
+        width: 50%;
+        text-align: center;
+        background-color: rgb(169, 113, 113);
+        margin: 0;
+        color: white;
+        border-radius: 8px;
+    }
+
+    .view
+    {
+        width: 100%;
+    }
+}
+

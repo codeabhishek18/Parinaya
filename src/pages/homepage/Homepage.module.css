@@ -1,0 +1,7 @@
+.container
+{
+    background-image: url('../../assets/heroimage.jpg');
+    height: 100vh;
+    background-size: cover;
+    background-position: right;
+}
