@@ -3,23 +3,9 @@ import { useState, useEffect } from 'react'
 import { storage } from '../../firebase';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 
-const PersonalDetails = ({onComplete}) =>
+const PersonalDetails = ({personalData, setPersonalData, onComplete}) =>
 {
-    const [ personalData, setPersonalData ] = 
-        useState(
-            {   
-                firstname: '',
-                lastname: '',
-                gender: '',
-                dob: '',
-                sunsign: '',
-                height: '',
-                education: '',
-                occupation: '',
-                salary: '',
-                workplace: ''
-            }
-        );
+    
         const [ file, setFile ] = useState(null);
         const [ progress, setProgress ] = useState(0);
 
@@ -81,7 +67,7 @@ const PersonalDetails = ({onComplete}) =>
         <input name="workplace" type="text" placeholder="Work Place" value={personalData.workplace} onChange={handleChange} required/>
         <label>Upload Picture</label>
         <input className={personal.file} type="file" onChange={(e)=> setFile(e.target.files[0])}/>
-        <button disabled={progress<100} className={personal.next}>Next</button>
+        <button className={personal.next}>Next</button>
     </form>
         
     )

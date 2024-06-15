@@ -1,19 +1,16 @@
-import Form from '../form/Form';
-import Profiles from '../profiles/Profiles'
 import dashboard from './Dashboard.module.css'
-import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const Dashboard = () =>
 {
-    const [ register, setRegister ] = useState(false);
+    const navigate = useNavigate();
 
     return(
         <div className={dashboard.container}>
             <div className={dashboard.navbar}>
-                <h1 onClick={()=>setRegister(false)}>Parinaya</h1>
-                <button className={dashboard.register} onClick={()=> setRegister(true)}>Register</button>
+                <h1 onClick={()=>navigate('/')}>Parinaya</h1>
+                <button className={dashboard.register} onClick={()=> navigate('/register')}>Register</button>
             </div>
-            {!register ? <Profiles/> : <Form/>}
         </div>
     )
 }

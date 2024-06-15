@@ -1,10 +1,32 @@
+import { useParams } from 'react-router-dom'
 import preview from './Preview.module.css'
+import { useEffect, useState } from 'react';
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from '../../firebase';
+import CircularProgress from '@mui/joy/CircularProgress';
 
-const Preview = ({profile}) =>
+const Preview = () =>
 {
+    const {id} = useParams();
+    const [ profile, setProfile ] = useState(null);
+
+    const getDocument = async () =>
+    {
+        const docRef = doc(db, 'profiles', id.toString())
+        const snapshot = await getDoc(docRef);
+        if(snapshot.exists())
+            setProfile(snapshot.data());
+    }
+    
+    useEffect(()=>
+    {
+        getDocument();
+    },[])
 
     return(
         <div className={preview.container}>
+        {profile ? 
+        <div className={preview.profile}>
             <div className={preview.displaypicture}>
                 <img src={profile.personalData.img} alt="img"/>
             </div>
@@ -35,6 +57,15 @@ const Preview = ({profile}) =>
                     <p><span>Demands : </span>{profile.familyData.demands}</p>
                 </div>
             </div>
+        </div> :
+        <CircularProgress
+            color="neutral"
+            determinate={false}
+            size="lg"
+            value={30}
+            variant="soft"
+        />}
+
         </div>
     )
 }

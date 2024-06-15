@@ -1,23 +1,8 @@
 import family from './FamilyDetails.module.css'
 import { useState } from 'react'
 
-const FamilyDetails = ({onComplete, handleBack}) =>
+const FamilyDetails = ({familyData, setFamilyData, onComplete, handleBack}) =>
 {
-    const [ familyData, setFamilyData ] = 
-    useState(
-        {   
-            frname: '',
-            frocc: '',
-            mrname: '',
-            mrocc: '',
-            siblings: '',
-            religion: '',
-            caste: '',
-            bedagu: '',
-            place: '',
-            demands: ''
-        }
-    )
 
     const handleChange = (e) =>
     {
