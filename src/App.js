@@ -3,10 +3,12 @@ import Form from './components/form/Form';
 import Preview from './components/preview/Preview';
 import Profiles from './components/profiles/Profiles';
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+import { SnackbarProvider } from 'notistack';
 
 function App() {
   return (
-    <div className="App">
+  <div className="App">
+    <SnackbarProvider anchorOrigin={{ horizontal: 'center', vertical: 'top' }}>
       <Router>
         <Routes>
           <Route path='/' index element={<Profiles/>}/>
@@ -15,7 +17,8 @@ function App() {
           <Route path='/edit/:id' element={<Form/>}/>
         </Routes>
       </Router>
-    </div>
+    </SnackbarProvider>
+  </div>
   );
 }
 

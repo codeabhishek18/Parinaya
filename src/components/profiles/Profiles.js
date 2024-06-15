@@ -6,6 +6,7 @@ import Dashboard from '../dashboard/Dashboard'
 import { useNavigate } from 'react-router-dom'
 import CircularProgress from '@mui/joy/CircularProgress'
 import DeleteProfile from '../deleteprofile/DeleteProfile'
+import { enqueueSnackbar } from 'notistack'
 
 const Profiles = () =>
 {
@@ -16,6 +17,9 @@ const Profiles = () =>
     const [ profileId, setProfileId ] = useState(null);
     const navigate = useNavigate();
 
+    const [ searchName, setSearchName ] = useState('');
+    // const [ byGender, setByGender ] = useState(null);
+
     useEffect(()=>
     {
         getProfileData();
@@ -23,16 +27,44 @@ const Profiles = () =>
 
     const getProfileData = async () =>
     {
-        const querySnapshot = await getDocs(collection(db, "profiles"));
-        const profileList = querySnapshot.docs.map((doc)=> ({id: doc.id,...doc.data()}))
-        setProfileData(profileList);
+        try
+        {
+            const querySnapshot = await getDocs(collection(db, "profiles"));
+            const profileList = querySnapshot.docs.map((doc)=> ({id: doc.id,...doc.data()}))
+            setProfileData(profileList);
+        }
+        catch(error)
+        {
+            enqueueSnackbar('Check your internet connection or refresh', {variant:'error'})
+        }
     }
+
+    const filteredSearch = 
+    [...profileData].filter(
+        (profile) => 
+        {
+            const fullname = profile.personalData.firstname +' ' +profile.personalData.lastname;
+            if(fullname.toLowerCase().includes(searchName))
+                return profile
+        })
 
     return(
         <div className={profiles.profilecards}>
         {profileData.length ? <div className={profiles.container}>
             <Dashboard/>
-            {profileData.map((profile)=>
+            <div className={profiles.query}>
+                <div className={profiles.searchbar}>
+                    <input placeholder="Search by name" value={searchName} className={profiles.search} onChange={(e)=> setSearchName(e.target.value)}/>
+                    <span className={profiles.clear} onClick={()=> setSearchName('')}>Clear</span>
+                </div>
+                {/* <div className={profiles.filtergender}>
+                    <select onChange={(e)=> setByGender(e.target.value)}>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div> */}
+            </div>
+            {filteredSearch.map((profile)=>
             (
                 <div className={profiles.card} key={profile.id}>
                     <img src={profile.personalData.img} alt="img" onClick={()=> {setCurrentDP(profile.personalData.img); setZoom(true)}}/>
@@ -50,7 +82,12 @@ const Profiles = () =>
                     </div>
                 </div>
             ))}
-
+            
+            {!filteredSearch.length && 
+            <div className={profiles.noprofiles}>
+                <h1>No Profiles Found</h1>
+            </div>}
+            
             {deleteProfile && <div className={profiles.deleteProfile}>
                 <DeleteProfile setDeleteProfile={setDeleteProfile} profileId={profileId} setProfileData={setProfileData}/>
             </div>}
@@ -61,12 +98,14 @@ const Profiles = () =>
                     {zoom && <span className={profiles.imgclose} onClick={()=> setZoom(false)}>X</span>}
                 </div>}
         </div> :
-        <CircularProgress
+        <div className={profiles.circularProgress}>
+            <CircularProgress
             color="neutral"
             determinate={false}
             size="lg"
             value={30}
-            variant="soft"/>}
+            variant="soft"/>
+        </div>}
         </div>
     )
 }

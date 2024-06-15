@@ -1,6 +1,7 @@
 import { deleteDoc, doc } from 'firebase/firestore'
 import deleteprofile from './DeleteProfile.module.css'
 import { db } from '../../firebase'
+import { enqueueSnackbar } from 'notistack'
 
 const DeleteProfile = ({setDeleteProfile, profileId, setProfileData}) =>
 {
@@ -9,6 +10,7 @@ const DeleteProfile = ({setDeleteProfile, profileId, setProfileData}) =>
         try
         {
             await deleteDoc(doc(db, 'profiles', profileId));
+            enqueueSnackbar('Profile is deleted')
         }
         catch(error)
         {

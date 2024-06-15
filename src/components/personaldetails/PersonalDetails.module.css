@@ -32,3 +32,11 @@ label
 {
     padding:0;
 }
+
+.upload
+{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}

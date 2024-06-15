@@ -1,5 +1,4 @@
 import family from './FamilyDetails.module.css'
-import { useState } from 'react'
 
 const FamilyDetails = ({familyData, setFamilyData, onComplete, handleBack}) =>
 {

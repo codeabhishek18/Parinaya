@@ -5,6 +5,7 @@ import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../../firebase';
 import CircularProgress from '@mui/joy/CircularProgress';
 import profiles from '../profiles/Profiles.module.css'
+import { enqueueSnackbar } from 'notistack';
 
 const Preview = () =>
 {
@@ -14,16 +15,36 @@ const Preview = () =>
 
     const getDocument = async () =>
     {
-        const docRef = doc(db, 'profiles', id.toString())
-        const snapshot = await getDoc(docRef);
-        if(snapshot.exists())
-            setProfile(snapshot.data());
+        try
+        {
+            const docRef = doc(db, 'profiles', id.toString())
+            const snapshot = await getDoc(docRef);
+            if(snapshot.exists())
+                setProfile(snapshot.data());
+        }
+        catch(error)
+        {
+            enqueueSnackbar('Check your internet connection or refresh', {variant:'error'})
+        }
     }
     
     useEffect(()=>
     {
         getDocument();
     },[])
+
+    const handleDownload = () =>
+    {
+        const url = `https://parinaya.vercel.app/profiles/${id}`
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `profile_${profile.id}.json`;
+        document.body.appendChild(a);
+        a.click();
+
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    }
 
     return(
         <div className={preview.container}>
@@ -35,7 +56,7 @@ const Preview = () =>
             </div>
             <button className={profile.status === 'Pending' ? `${profiles.warning} ${profiles.status}` : `${profiles.success} ${profiles.status}`}>{profile.status}</button>
             <div className={preview.profilebuttons}>
-                <button className={preview.download}>Download</button>
+                <button className={preview.download} onClick={handleDownload}>Download</button>
                 <button className={preview.edit} onClick={()=> navigate(`/edit/${id}`)}>Edit</button>
             </div>
             <div className={preview.details}>

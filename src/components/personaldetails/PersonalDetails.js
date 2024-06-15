@@ -2,6 +2,7 @@ import personal from './PersonalDetails.module.css'
 import { useState, useEffect } from 'react'
 import { storage } from '../../firebase';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
+import CircularProgress from '@mui/joy/CircularProgress';
 
 const PersonalDetails = ({personalData, setPersonalData, onComplete}) =>
 {
@@ -55,10 +56,10 @@ const PersonalDetails = ({personalData, setPersonalData, onComplete}) =>
         <input name="lastname" type="text" placeholder="Last name" value={personalData.lastname}  onChange={handleChange} required/>
         <select name="gender" onChange={handleChange}>
             <option value="">Gender</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
         </select>      
-        <input name="dob" type="text" placeholder="Date of Birth" value={personalData.dob} onChange={handleChange} required/>
+        <input name="dob" type="text" placeholder="Date of Birth (dd-mm-yyyy)" value={personalData.dob} onChange={handleChange} required/>
         <input name="sunsign" type="text" placeholder="Sun sign" value={personalData.sunsign} onChange={handleChange} required/>
         <input name="height" type="text" placeholder="Height" value={personalData.height} onChange={handleChange} required/>
         <input name="education" type="text" placeholder="Education" value={personalData.education}  onChange={handleChange} required/>
@@ -67,6 +68,15 @@ const PersonalDetails = ({personalData, setPersonalData, onComplete}) =>
         <input name="workplace" type="text" placeholder="Work Place" value={personalData.workplace} onChange={handleChange} required/>
         <label>Upload Picture</label>
         <input className={personal.file} type="file" onChange={(e)=> setFile(e.target.files[0])}/>
+        {progress>0 && progress<100 && 
+        <div className={personal.upload}>
+            <CircularProgress
+                color="neutral"
+                determinate={false}
+                size="md"
+                value={30}
+                variant="soft"/>
+        </div>}
         <button className={personal.next}>Next</button>
     </form>
         

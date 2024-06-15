@@ -1,0 +1,35 @@
+.container
+{
+    background-color: var(--primary-color);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--secondary-color);
+}
+
+.row
+{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    column-gap: 20px;
+    font-weight: 500;
+    line-height: 28px;
+}
+
+.row>img
+{
+    width: 30px;
+    height: 30px;
+}
+
+.hr
+{
+    width: 100%;
+    background-color: var(--secondary-color);
+    height: 2px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+}

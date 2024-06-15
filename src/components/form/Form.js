@@ -7,6 +7,8 @@ import Dashboard from '../dashboard/Dashboard';
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import CircularProgress from '@mui/joy/CircularProgress';
+import Footer from '../footer/Footer';
+import { enqueueSnackbar } from 'notistack';
 
 const dateFormat = () =>
 {
@@ -21,7 +23,7 @@ const Form = () =>
     const [ page, setPage ] = useState(0);
     const [ profile, setProfile ] = useState(
         {
-            status: 'pending',
+            status: 'Pending',
             date: dateFormat(),
         }
     );
@@ -68,12 +70,26 @@ const Form = () =>
 
     const submitData = async (familyData) =>
     {
-        await addDoc(collection(db, "profiles"), {...profile, familyData});
+        try
+        {
+            await addDoc(collection(db, "profiles"), {...profile, familyData});
+        }
+        catch(error)
+        {
+            enqueueSnackbar('Check your internet connection or refresh', {variant:'error'})
+        }
     }
 
     const updateData = async () =>
     {
-        await updateDoc(doc(db, 'profiles', id.toString()), {...profile, familyData})
+        try
+        {
+            await updateDoc(doc(db, 'profiles', id.toString()), {...profile, familyData})
+        }
+        catch(error)
+        {
+            enqueueSnackbar('Check your internet connection or refresh', {variant:'error'})
+        }
     }
 
     const handlePersonalDetails = (personalData) =>
@@ -90,10 +106,12 @@ const Form = () =>
         if(id)
         {
             updateData(familyData);
+            enqueueSnackbar('Profile is updated', {variant:'success'})
         }
         else
         {
             submitData(familyData);
+            enqueueSnackbar('Profile is registered', {variant:'success'})
         }
         navigate('/')
         localStorage.clear();
@@ -150,7 +168,8 @@ const Form = () =>
     return(
         <div className={formstyles.container}>
             <Dashboard/>
-            {(id && familyData && personalData || !id) ? <div>
+            {(id && familyData && personalData || !id) ? 
+            <div>
                 <div className={formstyles.headers}>
                     <p onClick={()=>setPage(0)} className={page === 0 ? formstyles.active : ''}>Personal Details</p>
                     <p onClick={()=>setPage(1)} className={page === 1 ? formstyles.active : ''}>Family Details</p>
@@ -161,6 +180,7 @@ const Form = () =>
                     <PersonalDetails personalData={personalData} setPersonalData={setPersonalData} onComplete={handlePersonalDetails}/> :
                     <FamilyDetails familyData={familyData} setFamilyData={setFamilyData} onComplete={handleFamilyDetails} handleBack={handleBack}/>}
                 </div>
+                <Footer/>
             </div> :
             <CircularProgress
                 color="neutral"

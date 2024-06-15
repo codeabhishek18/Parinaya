@@ -1,7 +1,6 @@
 .profilecards
 {
     width: 100%;
-    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,11 +9,51 @@
 .container
 {
     width: 100%;
-    min-height: 100%;
+    height: 100%;
     background-color: rgba(208, 196, 196, 0.884);
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.query
+{
+    width: 100%;
+    padding: 20px;
+    padding-top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.searchbar
+{
+    width: 300px;
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+}
+
+.search
+{
+    width: 100%;
+    border-radius: 8px;
+    border: 0;
+    padding: 10px;
+}
+
+.clear
+{
+    font-size: 12px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary-color);
+    border-radius: 8px;
+    color: white;
+    width: 80px;
+    cursor: pointer;
 }
 
 .card
@@ -28,7 +67,7 @@
     justify-content: center;
     border-radius: 20px;
     font-size: 14px;
-    background-color: white !important;
+    background-color: white;
     border-radius: 8px;
     margin-bottom: 20px;
 }
@@ -36,7 +75,7 @@
 .card>img
 {
     width: 250px;
-    height: 200px;
+    height: 300px;
     object-fit:cover;
     object-position: top;
     cursor: pointer;
@@ -75,7 +114,7 @@ p>span
     font-weight: 500;
 }
 
-.close, .imgclose
+.imgclose
 {
     height: 30px;
     width: 30px;
@@ -85,19 +124,13 @@ p>span
     align-items: center;
     z-index: 1;
     top:20px;
-    right: 0;
+    right: 10px;
     padding: 10px;
     background-color: var(--secondary-color);
     border-radius: 50%;
     color: white;
     font-size: 18px;
     cursor: pointer;
-}
-
-.imgclose
-{
-    top: 50px;
-    right: 30px;
 }
 
 .preview
@@ -171,4 +204,22 @@ p>span
     border-radius: 50%;
     color: white;
     cursor: pointer;
+}
+
+.noprofiles
+{
+    width: 100%;
+    height: 80vh;
+    color: var(--primary-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.circularProgress
+{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
