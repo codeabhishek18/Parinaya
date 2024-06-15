@@ -10,7 +10,7 @@ const DeleteProfile = ({setDeleteProfile, profileId, setProfileData}) =>
         try
         {
             await deleteDoc(doc(db, 'profiles', profileId));
-            enqueueSnackbar('Profile is deleted')
+            enqueueSnackbar('Profile is deleted', {variant: 'warning'})
         }
         catch(error)
         {
