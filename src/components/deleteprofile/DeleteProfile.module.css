@@ -1,0 +1,44 @@
+.container
+{
+    width: 90%;
+    height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: white;
+    border-radius: 8px;
+}
+
+.container>p
+{
+    font-size: 24px;
+    font-weight: 500;
+    margin: 0;
+}
+
+.yes, .no
+{
+    width: 80px;
+    border: 0;
+    border-radius: 8px;
+    padding: 10px;
+    color: white;
+    cursor: pointer;
+}
+
+.yes
+{
+    background-color: var(--secondary-color);
+}
+
+.no
+{
+    background-color: var(--primary-color);
+}
+
+.footerbuttons
+{
+    display: flex;
+    column-gap: 20px;
+}

@@ -12,6 +12,7 @@ function App() {
           <Route path='/' index element={<Profiles/>}/>
           <Route path='/register' element={<Form/>}/>
           <Route path='/profiles/:id' element={<Preview/>}/>
+          <Route path='/edit/:id' element={<Form/>}/>
         </Routes>
       </Router>
     </div>

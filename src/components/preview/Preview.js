@@ -1,13 +1,15 @@
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import preview from './Preview.module.css'
 import { useEffect, useState } from 'react';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../../firebase';
 import CircularProgress from '@mui/joy/CircularProgress';
+import profiles from '../profiles/Profiles.module.css'
 
 const Preview = () =>
 {
     const {id} = useParams();
+    const navigate = useNavigate();
     const [ profile, setProfile ] = useState(null);
 
     const getDocument = async () =>
@@ -25,10 +27,16 @@ const Preview = () =>
 
     return(
         <div className={preview.container}>
+        <button className={preview.back} onClick={()=> navigate('/')}>Back</button>
         {profile ? 
         <div className={preview.profile}>
             <div className={preview.displaypicture}>
                 <img src={profile.personalData.img} alt="img"/>
+            </div>
+            <button className={profile.status === 'Pending' ? `${profiles.warning} ${profiles.status}` : `${profiles.success} ${profiles.status}`}>{profile.status}</button>
+            <div className={preview.profilebuttons}>
+                <button className={preview.download}>Download</button>
+                <button className={preview.edit} onClick={()=> navigate(`/edit/${id}`)}>Edit</button>
             </div>
             <div className={preview.details}>
                 <div className={preview.personal}>
