@@ -49,7 +49,7 @@ const PersonalDetails = ({personalData, setPersonalData, onComplete}) =>
 
     const handleDateChange = (date) => 
     {
-        setPersonalData({...personalData, date: date})
+        setPersonalData({...personalData, dob: date})
         setSelectDate(date);
     };
 
