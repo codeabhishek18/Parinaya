@@ -9,11 +9,12 @@
 .container
 {
     width: 100%;
-    height: 100%;
-    background-color: rgba(208, 196, 196, 0.884);
+    min-height: 100vh;
+    background-color: var(--primary-background);
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-bottom: 30px;
 }
 
 .query

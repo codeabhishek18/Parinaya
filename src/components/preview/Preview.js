@@ -64,13 +64,16 @@ const Preview = () =>
                     <h3>Personal Details</h3>
                     <p><span>Full name : </span>{profile.personalData.firstname +' ' +profile.personalData.lastname}</p>
                     <p><span>Gender : </span>{profile.personalData.gender}</p>
-                    <p><span>DOB : </span>{profile.personalData.dob}</p>
+                    <p><span>Date of Birth : </span>{profile.personalData.dob}</p>
                     <p><span>Sun sign : </span>{profile.personalData.sunsign}</p>
-                    <p><span>Height: </span>{profile.personalData.height}</p>
+                    <p><span>Height : </span>{profile.personalData.ft} ft {profile.personalData.in} in</p>
                     <p><span>Education : </span>{profile.personalData.education}</p>
-                    <p><span>Occupation: </span>{profile.personalData.occupation}</p>
-                    <p><span>Salary: </span>{profile.personalData.salary}</p>
-                    <p><span>Work Place: </span>{profile.personalData.workplace}</p>
+                    {profile.personalData.field && <p><span>Field of Education : </span>{profile.personalData.field}</p>}
+                    <p><span>Sector : </span>{profile.personalData.sector}</p>
+                    <p><span>Occupation : </span>{profile.personalData.occupation}</p>
+                    <p><span>Salary : </span>{profile.personalData.salary}</p>
+                    <p><span>Work Place : </span>{profile.personalData.workplace}</p>
+                    <p><span>Contact : </span>{profile.personalData.contact}</p>
                 </div>
                 <div className={preview.family}>
                     <h3>Family Details</h3>

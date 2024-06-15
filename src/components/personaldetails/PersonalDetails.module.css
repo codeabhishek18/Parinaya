@@ -15,6 +15,12 @@ input, select, .next
     border:0;
 }
 
+.height
+{
+    display: flex;
+    column-gap: 10px;
+}
+
 .next
 {
     margin-top: 10px;

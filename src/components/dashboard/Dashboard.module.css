@@ -17,7 +17,7 @@
 h1
 {
     margin-left: 20px;
-    color: rgb(184, 184, 184);
+    color: var(--primary-background);
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     cursor: pointer;
 }

@@ -30,19 +30,21 @@ const Form = () =>
 
     const [ personalData, setPersonalData ] = 
         useState(
-            {   
-                firstname: '',
-                lastname: '',
-                gender: '',
-                dob: '',
-                sunsign: '',
-                height: '',
-                education: '',
-                occupation: '',
-                salary: '',
-                workplace: ''
-            }
-        );
+        {   
+            firstname: '',
+            lastname: '',
+            gender: '',
+            sunsign: '',
+            ft: '',
+            in: '',
+            education: '',
+            field:'',
+            sector:'',
+            occupation: '',
+            salary: '',
+            workplace: '',
+            contact:''
+        });
 
     const [ familyData, setFamilyData ] = 
         useState(
@@ -141,13 +143,16 @@ const Form = () =>
             firstname: '',
             lastname: '',
             gender: '',
-            dob: '',
             sunsign: '',
-            height: '',
+            ft: '',
+            in: '',
             education: '',
+            field:'',
+            sector:'',
             occupation: '',
             salary: '',
-            workplace: ''
+            workplace: '',
+            contact:''
         });
         setFamilyData({   
             frname: '',
@@ -171,8 +176,9 @@ const Form = () =>
             {(id && familyData && personalData || !id) ? 
             <div>
                 <div className={formstyles.headers}>
-                    <p onClick={()=>setPage(0)} className={page === 0 ? formstyles.active : ''}>Personal Details</p>
-                    <p onClick={()=>setPage(1)} className={page === 1 ? formstyles.active : ''}>Family Details</p>
+                    <p className={page === 0 ? formstyles.active : ''}>1. Personal Details</p>
+                    <span className={formstyles.connector}></span>
+                    <p className={page === 1 ? formstyles.active : ''}>2. Family Details</p>
                 </div>
 
                 <div className={formstyles.view}>

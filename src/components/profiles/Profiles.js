@@ -44,7 +44,7 @@ const Profiles = () =>
         (profile) => 
         {
             const fullname = profile.personalData.firstname +' ' +profile.personalData.lastname;
-            if(fullname.toLowerCase().includes(searchName))
+            if(fullname.toLowerCase().includes(searchName.toLowerCase()))
                 return profile
         })
 

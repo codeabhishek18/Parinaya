@@ -4,7 +4,7 @@
     height: 100%;
     display: flex;
     column-gap: 20px;
-    background-color: var(--secondary-color);
+    background-color: var(--primary-background);
 }
 
 .headers
@@ -55,14 +55,22 @@ p.active
     {
         flex-direction: row;
         width: 100%;
-        column-gap: 20px;
+        column-gap: 5px;
         display: flex;
+        align-items: center;
         padding-bottom: 0;
     }   
 
+    .connector
+    {
+        width: 20%;
+        height: 3px;
+        background-color: var(--secondary-color);
+    }
+
     .headers>p
     {
-        width: 50%;
+        width: 40%;
     }
 
     .view
