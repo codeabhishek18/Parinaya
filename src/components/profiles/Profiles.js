@@ -23,6 +23,8 @@ const Profiles = () =>
 
     const [ searchName, setSearchName ] = useState('');
     const [ byGender, setByGender ] = useState(null);
+    const [ bySector, setBySector ] = useState(null);
+    const [ byCategory, setByCategory ] = useState(null);
 
     useEffect(()=>
     {
@@ -62,6 +64,10 @@ const Profiles = () =>
 
     const searchByGender = byGender ? filteredSearch.filter((profile)=> profile.personalData.gender === byGender) : filteredSearch; 
 
+    const searchBySector = bySector ? searchByGender.filter((profile)=> profile.personalData.sector === bySector) : searchByGender; 
+
+    const searchByCategory = byCategory ? searchBySector.filter((profile)=> profile.category === byCategory) : searchBySector; 
+
     return(
         <div className={profiles.profilecards}>
         {profileData.length ? <div className={profiles.container}>
@@ -69,7 +75,7 @@ const Profiles = () =>
             <div className={profiles.query}>
                 <div className={profiles.searchbar}>
                     <input placeholder="Search by name" value={searchName} className={profiles.search} onChange={(e)=> setSearchName(e.target.value)}/>
-                    <span className={profiles.clear} onClick={()=> setSearchName('')}>Clear</span>
+                    <span className={profiles.clear} onClick={()=> setProfileData(profileData)}>Clear</span>
                 </div>
                 <div className={profiles.filters1}>
                     <select onChange={(e)=> setByGender(e.target.value)}>
@@ -88,23 +94,27 @@ const Profiles = () =>
                     </select>
                 </div>
                 <div className={profiles.filters2}>
-                    <select onChange={(e)=> setByGender(e.target.value)}>
+                    <select onChange={(e)=> setBySector(e.target.value)}>
                         <option value="">Filter by sector</option>
-                        <option>Private</option>
-                        <option>Government</option>
+                        <option value="Private">Private</option>
+                        <option value="Government">Government</option>
                     </select>
-                    <select onChange={(e)=> setByGender(e.target.value)}>
+                    <select onChange={(e)=> setByCategory(e.target.value)}>
                         <option value="">Filter by category</option>
-                        <option>Category A</option>
-                        <option>Category B</option>
-                        <option>Category C</option>
+                        <option value="A">Category A</option>
+                        <option value="B">Category B</option>
+                        <option value="C">Category C</option>
+                        <option value="D">Category D</option>
                     </select>
                 </div>
             </div>
-            {searchByGender.map((profile)=>
+            {searchByCategory.map((profile)=>
             (
                 <div className={profiles.card} key={profile.id}>
-                    <img src={profile.personalData.img} alt="img" onClick={()=> {setCurrentDP(profile.personalData.img); setZoom(true)}}/>
+                    <div className={profiles.dp}>
+                        <img src={profile.personalData.img} alt="img" onClick={()=> {setCurrentDP(profile.personalData.img); setZoom(true)}}/>
+                        <p className={profiles.category}>Category {profile.category}</p>
+                    </div>
                     <button className={profile.status === 'Pending' ? 
                         `${profiles.warning} ${profiles.status}` : 
                         `${profiles.success} ${profiles.status}`}

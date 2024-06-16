@@ -106,6 +106,8 @@ const PersonalDetails = ({personalData, setPersonalData, onComplete}) =>
             <option value="7th Class">7th Class</option>
             <option value="10th Class">10th Class</option>
             <option value="PUC">PUC</option>
+            <option value="ITI">ITI</option>
+            <option value="Diploma">PUC</option>
             <option value="Graduation">Graduation</option>
             <option value="Post Graduation">Post Graduation</option>
         </select>
@@ -113,17 +115,26 @@ const PersonalDetails = ({personalData, setPersonalData, onComplete}) =>
         <select name="field" onChange={handleChange}>
             <option value="">Field of study</option>
             <option value="BA">BA</option>
+            <option value="BAMS">BAMS</option>
             <option value="BBA">BBA</option>
             <option value="BBM">BBM</option>
             <option value="BCA">BCA</option>
             <option value="B.Com">B.Com</option>
+            <option value="BDS">BDS</option>
             <option value="B.E">B.E</option>
+            <option value="BHMS">BHMS</option>
             <option value="B.Sc">B.Sc</option>
+            <option value="BSW">BSW</option>
             <option value="MA">MA</option>
             <option value="MBA">MBA</option>
+            <option value="MBBS">MBBS</option>
             <option value="MCA">MCA</option>
             <option value="M.Com">M.Com</option>
+            <option value="MDS">MDS</option>
             <option value="M.E">M.E</option>
+            <option value="MS">MS</option>
+            <option value="M.Sc">M.Sc</option>
+            <option value="MSW">MSW</option>
         </select>}
         <select name="sector" onChange={handleChange}>
             <option value="">Sector</option>
@@ -133,15 +144,31 @@ const PersonalDetails = ({personalData, setPersonalData, onComplete}) =>
         <input name="occupation" type="text" placeholder="Occupation" value={personalData.occupation}  onChange={handleChange} required/>
         <select name="salary" onChange={handleChange}>
             <option value="">Salary per annum (in lakhs)</option>
-            <option value="1-2">1-2</option>
-            <option value="3-5">3-5</option>
-            <option value="6-10">6-10</option>
-            <option value="11-15">11-15</option>
-            <option value="16-20">16-20</option>
-            <option value="21-25">21-25</option>
-            <option value="26-30">26-30</option>
-            <option value="31-36">31-36</option>
-            <option value="36-50">36+</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25+">25+</option>
         </select>
         <select name="workplace" onChange={handleChange}>
             <option value="">Work place</option>

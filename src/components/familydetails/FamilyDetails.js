@@ -52,7 +52,7 @@ const FamilyDetails = ({familyData, setFamilyData, onComplete, handleBack}) =>
                 <option value="3">3</option>
                 <option value="4">4</option>
             </select>
-            <select name="proland" onChange={handleChange} required>
+            <select name="propland" onChange={handleChange} required>
                 <option value="">Land in acres</option>
                 <option value="0">0</option>
                 <option value="1">1</option>
@@ -81,16 +81,13 @@ const FamilyDetails = ({familyData, setFamilyData, onComplete, handleBack}) =>
                 <option value="24">24</option>
                 <option value="25">25</option>
             </select>
-            <select name="prosites" onChange={handleChange} required>
+            <select name="propsites" onChange={handleChange} required>
                 <option value="">Sites</option>
-                <option value="">0</option>
-                <option value="">2</option>
-                <option value="">3</option>
-                <option value="">4</option>
-                <option value="">5</option>
-                <option value="">6</option>
-                <option value="">7</option>
-                <option value="">8</option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4+</option>
             </select>
         </div>
        <select name="religion" onChange={handleChange} required>

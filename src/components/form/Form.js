@@ -25,7 +25,6 @@ const Form = () =>
         {
             status: 'Pending',
             date: dateFormat(),
-            category: ''
         }
     );
 
@@ -69,6 +68,79 @@ const Form = () =>
             }
         )
 
+    const calculateCategory = () =>
+    {
+        let salarypoints = 0;
+        let housepoints = 0;
+        let landpoints = 0;
+        let sitepoints = 0;
+
+        let salary = +personalData.salary;
+        let houses = +familyData.prophouses;
+        let land = +familyData.propland;
+        let sites = +familyData.propsites;
+        let siblings = +familyData.msiblings;
+
+        if(salary < 3)
+            salarypoints = 10;
+        if(salary >=3 && salary < 8)
+            salarypoints = 20;
+        if(salary >=8 && salary <15)
+            salarypoints = 30;
+        if(salary > 15)
+            salarypoints = 40;
+
+        if(houses === 0)
+            housepoints = 0;
+        if(houses === 1)
+            housepoints = 10;
+        if(houses === 2)
+            housepoints = 20;
+        if(houses === 3)
+            housepoints = 30;
+        if(houses > 3)
+            housepoints = 40;
+
+        if(land/siblings <= 1)
+            landpoints = 10;
+        if(land/siblings > 1 && land/siblings < 2)
+            landpoints = 20;
+        if(land/siblings >=2 && land/siblings < 5)
+            landpoints = 30;
+        if(land/siblings > 5)
+            landpoints = 40;
+
+        if(sites === 0)
+            sitepoints = 0;
+        if(sites === 1)
+            sitepoints = 10;
+        if(sites === 2)
+            sitepoints = 20;
+        if(sites === 3)
+            sitepoints = 30;
+        if(sites > 3)
+            sitepoints = 40;
+
+        if(salarypoints === 40 || housepoints === 40 || landpoints === 40 || sitepoints === 40)
+            return "A";
+
+        if(salarypoints === 30 && housepoints>0)
+            return "B"
+
+        if(salarypoints === 30 && housepoints===0)
+            return "C"
+
+        if(housepoints === 0)
+            return "D"
+        
+        let totalpoints = salarypoints + housepoints + landpoints + sitepoints;
+        if(totalpoints>=80)
+            return "B";
+
+        else    
+            return "C";
+    }
+
     const handleBack = () =>
     {
         setPage(0);
@@ -81,7 +153,7 @@ const Form = () =>
     {
         try
         {
-            await addDoc(collection(db, "profiles"), {...profile, familyData});
+            await addDoc(collection(db, "profiles"), {...profile, category: calculateCategory(), familyData});
         }
         catch(error)
         {
@@ -186,7 +258,7 @@ const Form = () =>
     return(
         <div className={formstyles.container}>
             <Dashboard setPage={setPage} type="edit"/>
-            {(id && familyData && personalData || !id) ? 
+            {((id && familyData && personalData) || !id) ? 
             <div>
                 <div className={formstyles.headers}>
                     <p className={page === 0 ? formstyles.active : ''}>1. Personal Details</p>
