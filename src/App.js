@@ -5,7 +5,8 @@ import Profiles from './components/profiles/Profiles';
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import { SnackbarProvider } from 'notistack';
 
-function App() {
+function App() 
+{
   return (
   <div className="App">
     <SnackbarProvider anchorOrigin={{ horizontal: 'center', vertical: 'top' }}>

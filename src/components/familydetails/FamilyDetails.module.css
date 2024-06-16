@@ -16,6 +16,12 @@ input, select, .submit, .back
     border-radius: 8px;
 }
 
+.siblings, .properties, .address
+{
+    display: flex;
+    column-gap: 10px;
+}
+
 .submit, .back
 {
     background-color: var(--primary-color);

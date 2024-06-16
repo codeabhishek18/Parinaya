@@ -25,6 +25,7 @@ const Form = () =>
         {
             status: 'Pending',
             date: dateFormat(),
+            category: ''
         }
     );
 
@@ -34,6 +35,7 @@ const Form = () =>
             firstname: '',
             lastname: '',
             gender: '',
+            dob:'',
             sunsign: '',
             ft: '',
             in: '',
@@ -53,11 +55,16 @@ const Form = () =>
                 frocc: '',
                 mrname: '',
                 mrocc: '',
-                siblings: '',
+                msiblings: '',
+                fsiblings:'',
+                prophouses:'',
+                propland:'',
+                propsites:'',
                 religion: '',
                 caste: '',
                 bedagu: '',
                 place: '',
+                district: '',
                 demands: ''
             }
         )
@@ -143,6 +150,7 @@ const Form = () =>
             firstname: '',
             lastname: '',
             gender: '',
+            dob:'',
             sunsign: '',
             ft: '',
             in: '',
@@ -159,11 +167,16 @@ const Form = () =>
             frocc: '',
             mrname: '',
             mrocc: '',
-            siblings: '',
+            msiblings: '',
+            fsiblings:'',
+            prophouses:'',
+            propland:'',
+            propsites:'',
             religion: '',
             caste: '',
             bedagu: '',
             place: '',
+            district: '',
             demands: ''
         })
         localStorage.clear();
@@ -172,7 +185,7 @@ const Form = () =>
 
     return(
         <div className={formstyles.container}>
-            <Dashboard/>
+            <Dashboard setPage={setPage} type="edit"/>
             {(id && familyData && personalData || !id) ? 
             <div>
                 <div className={formstyles.headers}>

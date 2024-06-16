@@ -7,6 +7,8 @@ import { useNavigate } from 'react-router-dom'
 import CircularProgress from '@mui/joy/CircularProgress'
 import DeleteProfile from '../deleteprofile/DeleteProfile'
 import { enqueueSnackbar } from 'notistack'
+import UpdateStatus from '../updatestatus/UpdateStatus'
+import preview from '../preview/Preview.module.css'
 
 const Profiles = () =>
 {
@@ -15,10 +17,12 @@ const Profiles = () =>
     const [ currentDP, setCurrentDP ] = useState(null);
     const [ deleteProfile, setDeleteProfile ] = useState(false);
     const [ profileId, setProfileId ] = useState(null);
+    const [ currentStatus, setCurrentStatus ] = useState();
+    const [ showStatus, setShowStatus ] = useState(false)
     const navigate = useNavigate();
 
     const [ searchName, setSearchName ] = useState('');
-    // const [ byGender, setByGender ] = useState(null);
+    const [ byGender, setByGender ] = useState(null);
 
     useEffect(()=>
     {
@@ -39,6 +43,14 @@ const Profiles = () =>
         }
     }
 
+    const handleStatus = (id, profileStatus, yes) =>
+    {
+        // setProfileId(id); 
+        // setCurrentStatus(profileStatus); 
+        // setShowStatus(yes);
+        // getProfileData();
+    }
+
     const filteredSearch = 
     [...profileData].filter(
         (profile) => 
@@ -47,6 +59,8 @@ const Profiles = () =>
             if(fullname.toLowerCase().includes(searchName.toLowerCase()))
                 return profile
         })
+
+    const searchByGender = byGender ? filteredSearch.filter((profile)=> profile.personalData.gender === byGender) : filteredSearch; 
 
     return(
         <div className={profiles.profilecards}>
@@ -57,18 +71,46 @@ const Profiles = () =>
                     <input placeholder="Search by name" value={searchName} className={profiles.search} onChange={(e)=> setSearchName(e.target.value)}/>
                     <span className={profiles.clear} onClick={()=> setSearchName('')}>Clear</span>
                 </div>
-                {/* <div className={profiles.filtergender}>
+                <div className={profiles.filters1}>
                     <select onChange={(e)=> setByGender(e.target.value)}>
+                        <option value="">Filter by gender</option>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
                     </select>
-                </div> */}
+                    <select onChange={(e)=> setByGender(e.target.value)}>
+                        <option value="">Filter by age</option>
+                        <option value="18-21">18-21</option>
+                        <option value="22-25">22-25</option>
+                        <option value="26-30">26-30</option>
+                        <option value="30-35">30-35</option>
+                        <option value="36-40">36-40</option>
+                        <option value="40-50">40+</option>
+                    </select>
+                </div>
+                <div className={profiles.filters2}>
+                    <select onChange={(e)=> setByGender(e.target.value)}>
+                        <option value="">Filter by sector</option>
+                        <option>Private</option>
+                        <option>Government</option>
+                    </select>
+                    <select onChange={(e)=> setByGender(e.target.value)}>
+                        <option value="">Filter by category</option>
+                        <option>Category A</option>
+                        <option>Category B</option>
+                        <option>Category C</option>
+                    </select>
+                </div>
             </div>
-            {filteredSearch.map((profile)=>
+            {searchByGender.map((profile)=>
             (
                 <div className={profiles.card} key={profile.id}>
                     <img src={profile.personalData.img} alt="img" onClick={()=> {setCurrentDP(profile.personalData.img); setZoom(true)}}/>
-                    <button className={profile.status === 'Pending' ? `${profiles.warning} ${profiles.status}` : `${profiles.success} ${profiles.status}`}>{profile.status}</button>
+                    <button className={profile.status === 'Pending' ? 
+                        `${profiles.warning} ${profiles.status}` : 
+                        `${profiles.success} ${profiles.status}`}
+                        onClick={()=>handleStatus(profile.id, profile.status, true)}>
+                        {profile.status}
+                    </button>
                     <div className={profiles.content}>
                         <p><span>Full Name : </span>{profile.personalData.firstname +' ' +profile.personalData.lastname}</p>
                         <p><span>DOB : </span>{profile.personalData.dob}</p>
@@ -83,7 +125,7 @@ const Profiles = () =>
                 </div>
             ))}
             
-            {!filteredSearch.length && 
+            {!searchByGender.length && 
             <div className={profiles.noprofiles}>
                 <h1>No Profiles Found</h1>
             </div>}
@@ -92,11 +134,18 @@ const Profiles = () =>
                 <DeleteProfile setDeleteProfile={setDeleteProfile} profileId={profileId} setProfileData={setProfileData}/>
             </div>}
 
+            {showStatus && 
+            <div className={preview.updatestatus}>
+                <UpdateStatus setShowStatus={setShowStatus} id={profileId} status={currentStatus}/>
+            </div>}
+
             {zoom && 
                 <div className={profiles.zoomcontainer}>
                     <img className={profiles.zoom} src={currentDP} alt='img'/>
                     {zoom && <span className={profiles.imgclose} onClick={()=> setZoom(false)}>X</span>}
-                </div>}
+                </div>
+            }
+                
         </div> :
         <div className={profiles.circularProgress}>
             <CircularProgress

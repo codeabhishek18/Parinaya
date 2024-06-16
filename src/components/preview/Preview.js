@@ -6,12 +6,14 @@ import { db } from '../../firebase';
 import CircularProgress from '@mui/joy/CircularProgress';
 import profiles from '../profiles/Profiles.module.css'
 import { enqueueSnackbar } from 'notistack';
+import UpdateStatus from '../updatestatus/UpdateStatus';
 
 const Preview = () =>
 {
     const {id} = useParams();
     const navigate = useNavigate();
     const [ profile, setProfile ] = useState(null);
+    const [ showStatus, setShowStatus ] = useState(false)
 
     const getDocument = async () =>
     {
@@ -38,7 +40,7 @@ const Preview = () =>
         const url = `https://parinaya.vercel.app/profiles/${id}`
         const a = document.createElement('a');
         a.href = url;
-        a.download = `profile_${profile.id}.json`;
+        a.download = `profile_${id}.json`;
         document.body.appendChild(a);
         a.click();
 
@@ -54,14 +56,19 @@ const Preview = () =>
             <div className={preview.displaypicture}>
                 <img src={profile.personalData.img} alt="img"/>
             </div>
-            <button className={profile.status === 'Pending' ? `${profiles.warning} ${profiles.status}` : `${profiles.success} ${profiles.status}`}>{profile.status}</button>
+            <button className={profile.status === 'Pending' ? 
+                `${profiles.warning} ${profiles.status}` : 
+                `${profiles.success} ${profiles.status}`}
+                onClick={()=>setShowStatus(true)}>
+                {profile.status}
+            </button>
             <div className={preview.profilebuttons}>
                 <button className={preview.download} onClick={handleDownload}>Download</button>
                 <button className={preview.edit} onClick={()=> navigate(`/edit/${id}`)}>Edit</button>
             </div>
             <div className={preview.details}>
                 <div className={preview.personal}>
-                    <h3>Personal Details</h3>
+                    <h2>Personal Details</h2>
                     <p><span>Full name : </span>{profile.personalData.firstname +' ' +profile.personalData.lastname}</p>
                     <p><span>Gender : </span>{profile.personalData.gender}</p>
                     <p><span>Date of Birth : </span>{profile.personalData.dob}</p>
@@ -76,7 +83,7 @@ const Preview = () =>
                     <p><span>Contact : </span>{profile.personalData.contact}</p>
                 </div>
                 <div className={preview.family}>
-                    <h3>Family Details</h3>
+                    <h2>Family Details</h2>
                     <p><span>Father's name : </span>{profile.familyData.frname +' ' +profile.personalData.lastname}</p>
                     <p><span>Father's occupation : </span>{profile.familyData.frocc}</p>
                     <p><span>Mother's name : </span>{profile.familyData.mrname +' ' +profile.personalData.lastname}</p>
@@ -98,6 +105,10 @@ const Preview = () =>
             variant="soft"
         />}
 
+        {showStatus && 
+            <div className={preview.updatestatus}>
+                <UpdateStatus setShowStatus={setShowStatus} id={id} status={profile.status}/>
+            </div>}
         </div>
     )
 }

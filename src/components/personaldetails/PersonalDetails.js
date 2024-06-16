@@ -47,12 +47,6 @@ const PersonalDetails = ({personalData, setPersonalData, onComplete}) =>
         setPersonalData({...personalData, [name] : value});
     }
 
-    const handleDateChange = (date) => 
-    {
-        setPersonalData({...personalData, dob: date})
-        setSelectDate(date);
-    };
-
     const handleSubmit = (e) =>
     {
         e.preventDefault();
@@ -68,15 +62,7 @@ const PersonalDetails = ({personalData, setPersonalData, onComplete}) =>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
         </select>      
-        <DatePicker
-            selected={selectDate}
-            onChange={handleDateChange}
-            dateFormat="dd/MM/yyyy"
-            isClearable
-            placeholderText="Date of Birth"
-            showYearDropdown
-            scrollableMonthYearDropdown
-        />
+        <input name="dob" value={personalData.dob} placeholder="Date of Birth (dd//mm/yyyy)" onChange={handleChange}/>
         <select name="sunsign" onChange={handleChange}>
             <option value="">Sun sign</option>
             <option value="Aries">Aries</option>
@@ -145,8 +131,50 @@ const PersonalDetails = ({personalData, setPersonalData, onComplete}) =>
             <option value="Government">Government</option>
         </select>
         <input name="occupation" type="text" placeholder="Occupation" value={personalData.occupation}  onChange={handleChange} required/>
-        <input name="salary" type="text" placeholder="Salary per month" value={personalData.salary} onChange={handleChange} required/>
-        <input name="workplace" type="text" placeholder="Work Place" value={personalData.workplace} onChange={handleChange} required/>
+        <select name="salary" onChange={handleChange}>
+            <option value="">Salary per annum (in lakhs)</option>
+            <option value="1-2">1-2</option>
+            <option value="3-5">3-5</option>
+            <option value="6-10">6-10</option>
+            <option value="11-15">11-15</option>
+            <option value="16-20">16-20</option>
+            <option value="21-25">21-25</option>
+            <option value="26-30">26-30</option>
+            <option value="31-36">31-36</option>
+            <option value="36-50">36+</option>
+        </select>
+        <select name="workplace" onChange={handleChange}>
+            <option value="">Work place</option>
+            <option value="Bagalkote">Bagalkote</option>
+            <option value="Bengaluru">Bengaluru</option>
+            <option value="Belagavi">Belagavi</option>
+            <option value="Bellari">Bellari</option>
+            <option value="Bidar">Bidar</option>
+            <option value="Vijayapura">Vijayapura</option>
+            <option value="Chamarajanagar">Chamarajanagar</option>
+            <option value="Chikkaballapura">Chikkaballapura</option>
+            <option value="Chikkamagaluru">Chikkamagaluru</option>
+            <option value="Chitradurga">Chitradurga</option>
+            <option value="Dakshina Kannada">Dakshina Kannada</option>
+            <option value="Davanagere">Davanagere</option>
+            <option value="Dharwad">Dharwad</option>
+            <option value="Gadag">Gadag</option>
+            <option value="1Kalaburagi">Kalaburagi</option>
+            <option value="Hassan">Hassan</option>
+            <option value="Haveri">Haveri</option>
+            <option value="Kodagu">Kodagu</option>
+            <option value="Kolar">Kolar</option>
+            <option value="Koppal">Koppal</option>
+            <option value="Mandya">Mandya</option>
+            <option value="Mysuru">Mysuru</option>
+            <option value="Raichur">Raichur</option>
+            <option value="Ramanagara">Ramanagara</option>
+            <option value="Shivamogga">Shivamogga</option>
+            <option value="Udupi">Udupi</option>
+            <option value="Uttara Kannada">Uttara Kannada</option>
+            <option value="Vijayanagara">Vijayanagara</option>
+            <option value="Yadgiri">Yadgiri</option>
+        </select>
         <input name="contact" type="text" placeholder="Contact Number" value={personalData.contact} onChange={handleChange} required/>
         <label>Upload Picture</label>
         <input className={personal.file} type="file" onChange={(e)=> setFile(e.target.files[0])}/>
