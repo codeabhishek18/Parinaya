@@ -12,7 +12,7 @@ const UpdateStatus = ({setShowStatus, id, status}) =>
     {
         await updateDoc(doc(db, 'profiles', id),{status : status === 'Pending' ? 'Matched' : 'Pending'});
         setShowStatus(false);
-        navigate('/')
+        navigate('/profiles')
         enqueueSnackbar('Status is updated', {variant: 'success'})   
     }
 

@@ -89,13 +89,13 @@ const Profiles = () =>
 
     return(
         <div className={profiles.profilecards}>
-        {profileData.length ? <div className={profiles.container}>
             <Dashboard/>
+            {profileData.length ? <div className={profiles.container}>
             <div className={profiles.query}>
                 <div className={profiles.searchbar}>
                     <input placeholder="Search by name" value={searchName} className={profiles.search} onChange={(e)=> setSearchName(e.target.value)}/>
-                    <span className={profiles.clear} onClick={handleClear}>Clear</span>
                 </div>
+                <div className={profiles.filters}>
                 <div className={profiles.filters1}>
                     <select onChange={(e)=> setByGender(e.target.value)}>
                         <option value="" selected disabled>Filter by gender</option>
@@ -126,7 +126,10 @@ const Profiles = () =>
                         <option value="D">Category D</option>
                     </select>
                 </div>
+                <span className={profiles.clear} onClick={handleClear}>Clear</span>
+                </div>
             </div>
+            {searchByCategory.length ? <div className={profiles.cards}>
             {searchByCategory.map((profile)=>
             (
                 <div className={profiles.card} key={profile.id}>
@@ -154,7 +157,8 @@ const Profiles = () =>
                 </div>
             ))}
             
-            {!searchByCategory.length && 
+            </div>
+             : 
             <div className={profiles.noprofiles}>
                 <h1>No Profiles Found</h1>
             </div>}

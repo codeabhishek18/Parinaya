@@ -8,13 +8,15 @@
     align-items: center;
     background-color: white;
     border-radius: 8px;
+    padding: 10px;
 }
 
-.container>p
+.container>h2
 {
     font-size: 24px;
     font-weight: 500;
     margin: 0;
+    text-align: center;
 }
 
 .yes, .no
@@ -41,4 +43,12 @@
 {
     display: flex;
     column-gap: 20px;
+}
+
+@media screen and (min-width:400px) 
+{
+    .container
+    {
+        width: 350px;
+    }   
 }

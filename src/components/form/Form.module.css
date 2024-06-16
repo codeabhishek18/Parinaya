@@ -2,20 +2,30 @@
 {
     width: 100%;
     height: 100%;
-    display: flex;
-    column-gap: 20px;
     background-color: var(--primary-background);
+}
+
+.formcontent
+{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
 }
 
 .headers
 {
-    width: 30%;
     height: 100%;
-    padding: 20px;
     display: flex;
-    flex-direction: column;
-    row-gap: 15px;
-    padding-top: 0;
+    align-items: center;
+    column-gap: 5px;
+    margin-bottom: 20px;
+}
+
+.connector
+{
+    width: 20%;
+    height: 3px;
+    background-color: var(--secondary-color);
 }
 
 .headers>p
@@ -34,7 +44,7 @@
 
 .view
 {
-    width: 70%;
+    width: 100%;
     height: 100%;
 }
 
@@ -44,38 +54,32 @@ p.active
     color: white;
 }
 
-@media screen and (max-width:450px) 
+@media screen and (min-width:900px) 
 {
-    .container
+    .formcontent
     {
-        flex-direction: column;
+        flex-direction: row;
+        width: 100%;
+        column-gap: 20px;
+    }
+
+    .connector
+    {
+        height: 30px;
+        width: 3px;
     }
 
     .headers
     {
-        flex-direction: row;
-        width: 100%;
-        column-gap: 5px;
-        display: flex;
+        width: 30%;
+        flex-direction: column;
         align-items: center;
-        padding-bottom: 0;
+        row-gap: 10px;
     }   
-
-    .connector
-    {
-        width: 20%;
-        height: 3px;
-        background-color: var(--secondary-color);
-    }
-
-    .headers>p
-    {
-        width: 40%;
-    }
 
     .view
     {
-        width: 100%;
+        width: 70%;
     }
 }
 

@@ -27,7 +27,7 @@ const DeleteProfile = ({setDeleteProfile, profileId, setProfileData}) =>
 
     return(
         <div className={deleteprofile.container}>
-            <p>Are you sure?</p>
+            <h2>Are you sure?</h2>
             <div className={deleteprofile.footerbuttons}>
                 <button className={deleteprofile.yes} onClick={handleDelete}>Yes</button>
                 <button className={deleteprofile.no} onClick={()=> setDeleteProfile(false)}>No</button>

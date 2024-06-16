@@ -8,7 +8,7 @@ const Dashboard = ({setPage, type}) =>
     return(
         <div className={dashboard.container}>
             <div className={dashboard.navbar}>
-                <h1 onClick={()=> navigate('/')}>Parinaya Events</h1>
+                <h1 onClick={()=> navigate('/')}>Parinaya</h1>
                 {!type && <button className={dashboard.register} onClick={()=> 
                 {
                     if(type==="edit")

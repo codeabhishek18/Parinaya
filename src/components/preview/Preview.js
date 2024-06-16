@@ -50,21 +50,23 @@ const Preview = () =>
 
     return(
         <div className={preview.container}>
-        <button className={preview.back} onClick={()=> navigate('/')}>Back</button>
+        <button className={preview.back} onClick={()=> navigate('/profiles')}>Back</button>
         {profile ? 
         <div className={preview.profile}>
-            <div className={preview.displaypicture}>
-                <img src={profile.personalData.img} alt="img"/>
-            </div>
-            <button className={profile.status === 'Pending' ? 
-                `${profiles.warning} ${profiles.status}` : 
-                `${profiles.success} ${profiles.status}`}
-                onClick={()=>setShowStatus(true)}>
-                {profile.status}
-            </button>
-            <div className={preview.profilebuttons}>
-                <button className={preview.download} onClick={handleDownload}>Download</button>
-                <button className={preview.edit} onClick={()=> navigate(`/edit/${id}`)}>Edit</button>
+            <div className={preview.header}>
+                <div className={preview.displaypicture}>
+                    <img src={profile.personalData.img} alt="img"/>
+                </div>
+                <button className={profile.status === 'Pending' ? 
+                    `${profiles.warning} ${profiles.status}` : 
+                    `${profiles.success} ${profiles.status}`}
+                    onClick={()=>setShowStatus(true)}>
+                    {profile.status}
+                </button>
+                <div className={preview.profilebuttons}>
+                    <button className={preview.download} onClick={handleDownload}>Download</button>
+                    <button className={preview.edit} onClick={()=> navigate(`/edit/${id}`)}>Edit</button>
+                </div>
             </div>
             <div className={preview.details}>
                 <div className={preview.personal}>

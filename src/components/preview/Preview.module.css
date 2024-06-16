@@ -18,9 +18,10 @@
     background-color: white;
     padding: 20px;
     display: flex;
-    flex-direction: column;
+    column-gap: 30px;
     border-radius: 8px;
     margin-bottom: 30px;
+    font-size: 16px;
 }
 
 .profilebuttons
@@ -37,6 +38,17 @@
     padding: 10px;
     border: 0;
     border-radius: 8px;
+    cursor: pointer;
+}
+
+.header
+{
+    width: 70%;
+    height: 100%;
+}
+
+.status
+{
     cursor: pointer;
 }
 
@@ -69,7 +81,8 @@
 .displaypicture, .displaypicture>img
 {
     width: 100%;
-    height: fit-content;
+    height: 100%;
+    object-fit: cover;
 }
 
 .updatestatus
@@ -83,4 +96,28 @@
     position: fixed;
     top:0;
     left: 0;
+}
+
+.personal>h2
+{
+    margin-top: 0;
+}
+
+@media screen and (max-width:1180px) 
+{
+    .profile
+    {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .personal>h2
+    {
+        margin-top: 20px;
+    }
+
+    .header
+    {
+        width: 100%;
+    }
 }

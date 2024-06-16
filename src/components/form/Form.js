@@ -261,7 +261,7 @@ const Form = () =>
         <div className={formstyles.container}>
             <Dashboard setPage={setPage} type="edit"/>
             {((id && familyData && personalData) || !id) ? 
-            <div>
+            <div className={formstyles.formcontent}>
                 <div className={formstyles.headers}>
                     <p className={page === 0 ? formstyles.active : ''}>1. Personal Details</p>
                     <span className={formstyles.connector}></span>
@@ -273,7 +273,6 @@ const Form = () =>
                     <PersonalDetails personalData={personalData} setPersonalData={setPersonalData} onComplete={handlePersonalDetails}/> :
                     <FamilyDetails familyData={familyData} setFamilyData={setFamilyData} onComplete={handleFamilyDetails} handleBack={handleBack}/>}
                 </div>
-                <Footer/>
             </div> :
             <CircularProgress
                 color="neutral"
@@ -282,6 +281,7 @@ const Form = () =>
                 value={30}
                 variant="soft"
             />}
+            <Footer/>
         </div>
     )
 }
