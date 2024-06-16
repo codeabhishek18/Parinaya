@@ -23,6 +23,7 @@ const Profiles = () =>
 
     const [ searchName, setSearchName ] = useState('');
     const [ byGender, setByGender ] = useState(null);
+    const [ byAge, setByAge ] = useState(null);
     const [ bySector, setBySector ] = useState(null);
     const [ byCategory, setByCategory ] = useState(null);
 
@@ -53,6 +54,22 @@ const Profiles = () =>
         // getProfileData();
     }
 
+    const handleClear = () =>
+    {
+        setSearchName('');
+        setByGender(null);
+        setByAge(null);
+        setBySector(null);
+        setByCategory(null); 
+    }
+
+    const getAgeRange = (ageRange) =>
+    {
+        let lowerLimit = ageRange.split('-')[0];
+        let upperLimit = ageRange.split('-')[1];
+        setByAge({lower: lowerLimit, upper: upperLimit})
+    }
+
     const filteredSearch = 
     [...profileData].filter(
         (profile) => 
@@ -64,7 +81,9 @@ const Profiles = () =>
 
     const searchByGender = byGender ? filteredSearch.filter((profile)=> profile.personalData.gender === byGender) : filteredSearch; 
 
-    const searchBySector = bySector ? searchByGender.filter((profile)=> profile.personalData.sector === bySector) : searchByGender; 
+    const searchByAge = byAge ? searchByGender.filter((profile)=> profile.personalData.age >= byAge.lower && profile.personalData.age <= byAge.upper) : searchByGender; 
+
+    const searchBySector = bySector ? searchByAge.filter((profile)=> profile.personalData.sector === bySector) : searchByAge; 
 
     const searchByCategory = byCategory ? searchBySector.filter((profile)=> profile.category === byCategory) : searchBySector; 
 
@@ -75,16 +94,16 @@ const Profiles = () =>
             <div className={profiles.query}>
                 <div className={profiles.searchbar}>
                     <input placeholder="Search by name" value={searchName} className={profiles.search} onChange={(e)=> setSearchName(e.target.value)}/>
-                    <span className={profiles.clear} onClick={()=> setProfileData(profileData)}>Clear</span>
+                    <span className={profiles.clear} onClick={handleClear}>Clear</span>
                 </div>
                 <div className={profiles.filters1}>
                     <select onChange={(e)=> setByGender(e.target.value)}>
-                        <option value="">Filter by gender</option>
+                        <option value="" selected disabled>Filter by gender</option>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
                     </select>
-                    <select onChange={(e)=> setByGender(e.target.value)}>
-                        <option value="">Filter by age</option>
+                    <select onChange={(e)=> getAgeRange(e.target.value)}>
+                        <option value="" selected disabled>Filter by age</option>
                         <option value="18-21">18-21</option>
                         <option value="22-25">22-25</option>
                         <option value="26-30">26-30</option>
@@ -95,12 +114,12 @@ const Profiles = () =>
                 </div>
                 <div className={profiles.filters2}>
                     <select onChange={(e)=> setBySector(e.target.value)}>
-                        <option value="">Filter by sector</option>
+                        <option value="" selected disabled>Filter by sector</option>
                         <option value="Private">Private</option>
                         <option value="Government">Government</option>
                     </select>
                     <select onChange={(e)=> setByCategory(e.target.value)}>
-                        <option value="">Filter by category</option>
+                        <option value="" selected disabled>Filter by category</option>
                         <option value="A">Category A</option>
                         <option value="B">Category B</option>
                         <option value="C">Category C</option>
@@ -123,7 +142,7 @@ const Profiles = () =>
                     </button>
                     <div className={profiles.content}>
                         <p><span>Full Name : </span>{profile.personalData.firstname +' ' +profile.personalData.lastname}</p>
-                        <p><span>DOB : </span>{profile.personalData.dob}</p>
+                        <p><span>Age: </span>{profile.personalData.age}</p>
                         <p><span>Religion : </span>{profile.familyData.religion}</p>
                         <p><span>Caste : </span>{profile.familyData.caste}</p>
                     </div>
@@ -135,7 +154,7 @@ const Profiles = () =>
                 </div>
             ))}
             
-            {!searchByGender.length && 
+            {!searchByCategory.length && 
             <div className={profiles.noprofiles}>
                 <h1>No Profiles Found</h1>
             </div>}

@@ -72,13 +72,14 @@ const Preview = () =>
                     <p><span>Full name : </span>{profile.personalData.firstname +' ' +profile.personalData.lastname}</p>
                     <p><span>Gender : </span>{profile.personalData.gender}</p>
                     <p><span>Date of Birth : </span>{profile.personalData.dob}</p>
+                    <p><span>Age : </span>{profile.personalData.age}</p>
                     <p><span>Sun sign : </span>{profile.personalData.sunsign}</p>
                     <p><span>Height : </span>{profile.personalData.ft} ft {profile.personalData.in} in</p>
                     <p><span>Education : </span>{profile.personalData.education}</p>
                     {profile.personalData.field && <p><span>Field of Education : </span>{profile.personalData.field}</p>}
                     <p><span>Sector : </span>{profile.personalData.sector}</p>
                     <p><span>Occupation : </span>{profile.personalData.occupation}</p>
-                    <p><span>Salary : </span>{profile.personalData.salary}</p>
+                    <p><span>Salary in LPA : </span>{profile.personalData.salary}</p>
                     <p><span>Work Place : </span>{profile.personalData.workplace}</p>
                     <p><span>Contact : </span>{profile.personalData.contact}</p>
                 </div>
@@ -88,12 +89,18 @@ const Preview = () =>
                     <p><span>Father's occupation : </span>{profile.familyData.frocc}</p>
                     <p><span>Mother's name : </span>{profile.familyData.mrname +' ' +profile.personalData.lastname}</p>
                     <p><span>Mother's occupation : </span>{profile.familyData.mrocc}</p>
-                    <p><span>Siblings : </span>{profile.familyData.siblings}</p>
+                    <p><span>Siblings : </span>{profile.familyData.msiblings}M {profile.familyData.fsiblings}F</p>
                     <p><span>Religion : </span>{profile.familyData.religion}</p>
                     <p><span>Caste : </span>{profile.familyData.caste}</p>
                     <p><span>Bedagu : </span>{profile.familyData.bedagu}</p>
-                    <p><span>Place : </span>{profile.familyData.place}</p>
+                    <p><span>Address : </span>{profile.familyData.place}, {profile.familyData.district}</p>
                     <p><span>Demands : </span>{profile.familyData.demands}</p>
+                </div>
+                <div className={preview.properties}>
+                    <h2>Properties</h2>
+                    <p><span>Own house(s) : </span>{profile.familyData.prophouses}</p>
+                    <p><span>Land : </span>{profile.familyData.propland} acres</p>
+                    <p><span>Sites : </span>{profile.familyData.propsites}</p>
                 </div>
             </div>
         </div> :

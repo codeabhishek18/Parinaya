@@ -23,7 +23,7 @@ const FamilyDetails = ({familyData, setFamilyData, onComplete, handleBack}) =>
         <input name="mrocc" type="text" placeholder="Mother's occupation" value={familyData.mrocc} onChange={handleChange} required/>
         <div className={family.siblings}>
             <select name="msiblings" onChange={handleChange} required>
-                <option value="">Siblings (Male)</option>
+                <option value="" selected disabled>Siblings (Male)</option>
                 <option value="0">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -33,7 +33,7 @@ const FamilyDetails = ({familyData, setFamilyData, onComplete, handleBack}) =>
                 <option value="6">6</option>
             </select>
             <select name="fsiblings" onChange={handleChange} required>
-                <option value="">Siblings (Female)</option>
+                <option value="" selected disabled>Siblings (Female)</option>
                 <option value="0">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -45,7 +45,7 @@ const FamilyDetails = ({familyData, setFamilyData, onComplete, handleBack}) =>
         </div>
         <div className={family.properties}>
             <select name="prophouses" onChange={handleChange} required>
-                <option value="">Houses</option>
+                <option value="" selected disabled>Houses</option>
                 <option value="0">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -53,7 +53,7 @@ const FamilyDetails = ({familyData, setFamilyData, onComplete, handleBack}) =>
                 <option value="4">4</option>
             </select>
             <select name="propland" onChange={handleChange} required>
-                <option value="">Land in acres</option>
+                <option value="" selected disabled>Land in acres</option>
                 <option value="0">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -82,7 +82,7 @@ const FamilyDetails = ({familyData, setFamilyData, onComplete, handleBack}) =>
                 <option value="25">25</option>
             </select>
             <select name="propsites" onChange={handleChange} required>
-                <option value="">Sites</option>
+                <option value="" selected disabled>Sites</option>
                 <option value="0">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -91,7 +91,7 @@ const FamilyDetails = ({familyData, setFamilyData, onComplete, handleBack}) =>
             </select>
         </div>
        <select name="religion" onChange={handleChange} required>
-            <option value="">Religion</option>
+            <option value="" selected disabled>Religion</option>
             <option value="Hindu">Hindu</option>
             <option value="Jain">Jain</option>
             <option value="Christ">Christ</option>
@@ -102,7 +102,7 @@ const FamilyDetails = ({familyData, setFamilyData, onComplete, handleBack}) =>
         <div className={family.address}>
             <input name="place" type="text" placeholder="Place" value={familyData.place} onChange={handleChange} required/>
             <select name="district" onChange={handleChange} required>
-                <option value="">District</option>
+                <option value="" selected disabled>District</option>
                 <option value="Bagalkote">Bagalkote</option>
                 <option value="Bengaluru">Bengaluru</option>
                 <option value="Belagavi">Belagavi</option>

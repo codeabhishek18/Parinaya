@@ -11,7 +11,6 @@ const PersonalDetails = ({personalData, setPersonalData, onComplete}) =>
     
         const [ file, setFile ] = useState(null);
         const [ progress, setProgress ] = useState(0);
-        const [selectDate, setSelectDate] = useState(null);
 
     useEffect(()=>
     {
@@ -58,13 +57,14 @@ const PersonalDetails = ({personalData, setPersonalData, onComplete}) =>
         <input name="firstname" type="text" placeholder="First name" value={personalData.firstname} onChange={handleChange} required/>
         <input name="lastname" type="text" placeholder="Last name" value={personalData.lastname}  onChange={handleChange} required/>
         <select name="gender" onChange={handleChange}>
-            <option value="">Gender</option>
+            <option value="" selected disabled>Gender</option>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
         </select>      
         <input name="dob" value={personalData.dob} placeholder="Date of Birth (dd//mm/yyyy)" onChange={handleChange}/>
+        <input name="age" value={personalData.age} placeholder="Age" onChange={handleChange}/>
         <select name="sunsign" onChange={handleChange}>
-            <option value="">Sun sign</option>
+            <option value="" selected disabled>Sun sign</option>
             <option value="Aries">Aries</option>
             <option value="Taurus">Taurus</option>
             <option value="Gemini">Gemini</option>
@@ -80,13 +80,13 @@ const PersonalDetails = ({personalData, setPersonalData, onComplete}) =>
         </select>
         <div className={personal.height}>
             <select name="ft" onChange={handleChange}>
-                <option value="">Height (ft)</option>
+                <option value="" selected disabled>Height (ft)</option>
                 <option value="4">4</option>
                 <option value="5">5</option>
                 <option value="6">6</option>
             </select>
             <select name="in" onChange={handleChange}>
-                <option value="">Height (in)</option>
+                <option value="" selected disabled>Height (in)</option>
                 <option value="0">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -102,7 +102,7 @@ const PersonalDetails = ({personalData, setPersonalData, onComplete}) =>
             </select>
         </div>
        <select name="education" onChange={handleChange}>
-            <option value="">Highest Education</option>
+            <option value="" selected disabled>Highest education</option>
             <option value="7th Class">7th Class</option>
             <option value="10th Class">10th Class</option>
             <option value="PUC">PUC</option>
@@ -113,7 +113,7 @@ const PersonalDetails = ({personalData, setPersonalData, onComplete}) =>
         </select>
         {(personalData.education === 'Graduation' || personalData.education === 'Post Graduation') && 
         <select name="field" onChange={handleChange}>
-            <option value="">Field of study</option>
+            <option value="" selected disabled>Field of study</option>
             <option value="BA">BA</option>
             <option value="BAMS">BAMS</option>
             <option value="BBA">BBA</option>
@@ -137,13 +137,13 @@ const PersonalDetails = ({personalData, setPersonalData, onComplete}) =>
             <option value="MSW">MSW</option>
         </select>}
         <select name="sector" onChange={handleChange}>
-            <option value="">Sector</option>
+            <option value="" selected disabled>Sector</option>
             <option value="Private">Private</option>
             <option value="Government">Government</option>
         </select>
         <input name="occupation" type="text" placeholder="Occupation" value={personalData.occupation}  onChange={handleChange} required/>
         <select name="salary" onChange={handleChange}>
-            <option value="">Salary per annum (in lakhs)</option>
+            <option value="" selected disabled>Salary per annum (in lakhs)</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -171,7 +171,7 @@ const PersonalDetails = ({personalData, setPersonalData, onComplete}) =>
                 <option value="25+">25+</option>
         </select>
         <select name="workplace" onChange={handleChange}>
-            <option value="">Work place</option>
+            <option value="" selected disabled>Work place</option>
             <option value="Bagalkote">Bagalkote</option>
             <option value="Bengaluru">Bengaluru</option>
             <option value="Belagavi">Belagavi</option>
@@ -202,7 +202,7 @@ const PersonalDetails = ({personalData, setPersonalData, onComplete}) =>
             <option value="Vijayanagara">Vijayanagara</option>
             <option value="Yadgiri">Yadgiri</option>
         </select>
-        <input name="contact" type="text" placeholder="Contact Number" value={personalData.contact} onChange={handleChange} required/>
+        <input name="contact" type="text" placeholder="Contact number" value={personalData.contact} onChange={handleChange} required/>
         <label>Upload Picture</label>
         <input className={personal.file} type="file" onChange={(e)=> setFile(e.target.files[0])}/>
         {progress>0 && progress<100 && 
