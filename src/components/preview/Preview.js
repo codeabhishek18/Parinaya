@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../../firebase';
 import CircularProgress from '@mui/joy/CircularProgress';
-import profiles from '../profiles/Profiles.module.css'
 import { enqueueSnackbar } from 'notistack';
 import UpdateStatus from '../updatestatus/UpdateStatus';
 
@@ -53,13 +52,14 @@ const Preview = () =>
         <button className={preview.back} onClick={()=> navigate('/profiles')}>Back</button>
         {profile ? 
         <div className={preview.profile}>
+
             <div className={preview.header}>
                 <div className={preview.displaypicture}>
                     <img src={profile.personalData.img} alt="img"/>
                 </div>
                 <button className={profile.status === 'Pending' ? 
-                    `${profiles.warning} ${profiles.status}` : 
-                    `${profiles.success} ${profiles.status}`}
+                    `${preview.warning} ${preview.status}` : 
+                    `${preview.success} ${preview.status}`}
                     onClick={()=>setShowStatus(true)}>
                     {profile.status}
                 </button>
@@ -68,10 +68,10 @@ const Preview = () =>
                     <button className={preview.edit} onClick={()=> navigate(`/edit/${id}`)}>Edit</button>
                 </div>
             </div>
+
             <div className={preview.details}>
                 <div className={preview.personal}>
-                    <h2>Personal Details</h2>
-                    <p><span>Full name : </span>{profile.personalData.firstname +' ' +profile.personalData.lastname}</p>
+                    <p className={preview.name}>{profile.personalData.firstname +' ' +profile.personalData.lastname}</p>
                     <p><span>Gender : </span>{profile.personalData.gender}</p>
                     <p><span>Date of Birth : </span>{profile.personalData.dob}</p>
                     <p><span>Age : </span>{profile.personalData.age}</p>

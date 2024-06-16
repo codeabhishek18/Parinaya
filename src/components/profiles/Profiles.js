@@ -136,23 +136,24 @@ const Profiles = () =>
                     <div className={profiles.dp}>
                         <img src={profile.personalData.img} alt="img" onClick={()=> {setCurrentDP(profile.personalData.img); setZoom(true)}}/>
                         <p className={profiles.category}>Category {profile.category}</p>
+                        <button className={profile.status === 'Pending' ? 
+                            `${profiles.warning} ${profiles.status}` : 
+                            `${profiles.success} ${profiles.status}`}
+                            onClick={()=>handleStatus(profile.id, profile.status, true)}>
+                            {profile.status}
+                        </button>
                     </div>
-                    <button className={profile.status === 'Pending' ? 
-                        `${profiles.warning} ${profiles.status}` : 
-                        `${profiles.success} ${profiles.status}`}
-                        onClick={()=>handleStatus(profile.id, profile.status, true)}>
-                        {profile.status}
-                    </button>
+                    
                     <div className={profiles.content}>
-                        <p><span>Full Name : </span>{profile.personalData.firstname +' ' +profile.personalData.lastname}</p>
-                        <p><span>Age: </span>{profile.personalData.age}</p>
+                        <p><span>Name : </span>{profile.personalData.firstname +' ' +profile.personalData.lastname}</p>
+                        <p><span>Age : </span>{profile.personalData.age}</p>
                         <p><span>Religion : </span>{profile.familyData.religion}</p>
                         <p><span>Caste : </span>{profile.familyData.caste}</p>
-                    </div>
-                    <div className={profiles.footer}>
-                        <button className={profiles.view} onClick={()=> navigate(`/profiles/${profile.id}`)}>View</button>
-                        <button className={profiles.edit} onClick={()=> navigate(`/edit/${profile.id}`)}>Edit</button>
-                        <button className={profiles.delete} onClick={()=> {setProfileId(profile.id); setDeleteProfile(true)}}>Delete</button>
+                        <div className={profiles.footer}>
+                            <button className={profiles.view} onClick={()=> navigate(`/profiles/${profile.id}`)}>View</button>
+                            <button className={profiles.edit} onClick={()=> navigate(`/edit/${profile.id}`)}>Edit</button>
+                            <button className={profiles.delete} onClick={()=> {setProfileId(profile.id); setDeleteProfile(true)}}>Delete</button>
+                        </div>
                     </div>
                 </div>
             ))}
