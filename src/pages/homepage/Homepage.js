@@ -14,7 +14,7 @@ const Homepage = () =>
         <div className={home.container}>
           <Dashboard type="home"/>
           <div className={home.verticals}>
-            <div className={home.row} onClick={()=> {navigate('/profiles'); enqueueSnackbar('Welcome !', {variant : 'success'}) }}>
+            <div className={home.row} onClick={()=> navigate('/signin')}>
               <img src={matrimony} alt="img"/>
               <h1>Matrimony</h1>
             </div>

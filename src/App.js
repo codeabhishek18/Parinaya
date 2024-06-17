@@ -5,6 +5,7 @@ import Profiles from './components/profiles/Profiles';
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import { SnackbarProvider } from 'notistack';
 import Homepage from './pages/homepage/Homepage';
+import SignIn from './components/signin/SignIn';
 
 function App() 
 {
@@ -18,6 +19,7 @@ function App()
           <Route path='/register' element={<Form/>}/>
           <Route path='/profiles/:id' element={<Preview/>}/>
           <Route path='/edit/:id' element={<Form/>}/>
+          <Route path='/signin' element={<SignIn/>}/>
         </Routes>
       </Router>
     </SnackbarProvider>

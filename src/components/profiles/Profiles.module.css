@@ -2,6 +2,7 @@
 {
     width: 100%;
     background-color: var(--primary-background);
+    padding-top: 70px;
 }
 
 .container
@@ -36,7 +37,6 @@
     border-radius: 8px;
     border: 0;
     padding: 10px;
-    font-size: 14px;
 }
 
 .clear
@@ -90,10 +90,15 @@
     margin-bottom: 20px;
 }
 
+.card:hover
+{
+    transform: scale(1.05);
+}
+
 .dp
 {
     width: 100%;
-    height: 250px;
+    height: 180px;
     position: relative;
     margin-bottom: 10px;
 }
@@ -106,6 +111,15 @@
     object-position: center;
     cursor: pointer;
     border-radius: 5px;
+}
+
+.navbar
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
 }
 
 .category
@@ -126,6 +140,12 @@
     width: 100%;
 }
 
+.content>p
+{
+    margin: 8px;
+    margin-left: 0;
+}
+
 .zoomcontainer, .deleteProfile
 {
     background-color: rgba(0,0,0,0.75);
@@ -138,6 +158,7 @@
     justify-content: center;
     align-items: center;
     position: fixed;
+    z-index: 2;
 }
 
 img.zoom
@@ -297,6 +318,15 @@ p>span
 
 @media screen and (min-width:940px) 
 {
+    .query
+    {
+        position:fixed;
+        top: 0;
+        left: 0;
+        padding-top: 90px;
+        height: 100%;
+    }
+
     .container
     {
         flex-direction: row;
@@ -330,4 +360,11 @@ p>span
     }   
 }
 
+@media screen and (min-width:1320px) 
+{
+    .card
+    {
+        width: calc( 25% - 15px);
+    }   
+}
 

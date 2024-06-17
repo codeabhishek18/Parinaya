@@ -28,6 +28,12 @@ const Form = () =>
         }
     );
 
+    useEffect(()=>
+    {
+        const registeredData = JSON.parse(localStorage.getItem('registeredData'));
+        personalData && setPersonalData({...personalData, registeredData});
+    },[])
+
     const [ personalData, setPersonalData ] = 
         useState(
         {   
@@ -80,7 +86,7 @@ const Form = () =>
         let houses = +familyData.prophouses;
         let land = +familyData.propland;
         let sites = +familyData.propsites;
-        let siblings = +familyData.msiblings;
+        let siblings = +familyData.msiblings === 0 ? 1 : +familyData.msiblings;
 
         if(salary < 3)
             salarypoints = 10;
@@ -195,8 +201,9 @@ const Form = () =>
             submitData(familyData);
             enqueueSnackbar('Profile is registered', {variant:'success'})
         }
-        navigate('/')
-        localStorage.clear();
+        navigate('/profiles')
+        localStorage.removeItem('personalData');
+        localStorage.removeItem('familyData');
     }
 
     useEffect(()=>
@@ -253,7 +260,8 @@ const Form = () =>
             district: '',
             demands: ''
         })
-        localStorage.clear();
+        localStorage.removeItem('personalData');
+        localStorage.removeItem('familyData');
         }
     },[id])
 

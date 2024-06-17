@@ -89,7 +89,9 @@ const Profiles = () =>
 
     return(
         <div className={profiles.profilecards}>
-            <Dashboard/>
+            <div className={profiles.navbar}>
+            <   Dashboard/>
+            </div>
             {profileData.length ? <div className={profiles.container}>
             <div className={profiles.query}>
                 <div className={profiles.searchbar}>
