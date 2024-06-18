@@ -1,6 +1,6 @@
 import formstyles from './Form.module.css'
-import { collection, addDoc, doc, getDoc, updateDoc } from 'firebase/firestore';
-import { db } from '../../firebase';
+import { collection, addDoc, doc, getDoc, updateDoc, setDoc } from 'firebase/firestore';
+import { auth, db } from '../../firebase';
 import PersonalDetails from '../personaldetails/PersonalDetails';
 import FamilyDetails from '../familydetails/FamilyDetails';
 import Dashboard from '../dashboard/Dashboard';
@@ -25,14 +25,9 @@ const Form = () =>
         {
             status: 'Pending',
             date: dateFormat(),
+            uid: ''
         }
     );
-
-    useEffect(()=>
-    {
-        const registeredData = JSON.parse(localStorage.getItem('registeredData'));
-        personalData && setPersonalData({...personalData, registeredData});
-    },[])
 
     const [ personalData, setPersonalData ] = 
         useState(
@@ -156,11 +151,16 @@ const Form = () =>
         perosnalData && localStorage.setItem('familyData', JSON.stringify(familyData));
     }
 
+    console.log();
+
     const submitData = async (familyData) =>
     {
         try
         {
-            await addDoc(collection(db, "profiles"), {...profile, category: calculateCategory(), familyData});
+            // await addDoc(collection(db, "profiles"), {...profile, category: calculateCategory(), familyData});
+            const docRef = doc(db, 'profiles', JSON.parse(localStorage.getItem('registeredData')).uid);
+            await setDoc(docRef, {...profile, category: calculateCategory(), familyData})
+            enqueueSnackbar('Profile is registered', {variant:'success'})
         }
         catch(error)
         {
@@ -189,7 +189,7 @@ const Form = () =>
         familyData && setFamilyData(JSON.parse(familyData));
     }
 
-    const handleFamilyDetails = (familyData) =>
+    const handleFamilyDetails = async (familyData) =>
     {
         if(id)
         {
@@ -198,8 +198,7 @@ const Form = () =>
         }
         else
         {
-            submitData(familyData);
-            enqueueSnackbar('Profile is registered', {variant:'success'})
+            await submitData(familyData);
         }
         navigate('/profiles')
         localStorage.removeItem('personalData');
@@ -243,6 +242,7 @@ const Form = () =>
             workplace: '',
             contact:''
         });
+        
         setFamilyData({   
             frname: '',
             frocc: '',
@@ -264,6 +264,28 @@ const Form = () =>
         localStorage.removeItem('familyData');
         }
     },[id])
+
+    useEffect(()=>
+    {
+        const registeredData = localStorage.getItem('registeredData');
+        function newUser()
+        {
+            if(registeredData)
+            {
+                const {firstname, lastname, contact, uid, email} = JSON.parse(registeredData);
+                setPersonalData({
+                    ...personalData,
+                    firstname: firstname, 
+                    lastname: lastname, 
+                    contact: contact
+                });
+                setProfile({...profile, uid:uid, email: email})
+            }
+        }
+
+        registeredData && newUser();
+    
+        },[])
 
     return(
         <div className={formstyles.container}>

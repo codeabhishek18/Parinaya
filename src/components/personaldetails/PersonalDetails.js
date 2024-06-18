@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react'
 import { storage } from '../../firebase';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import CircularProgress from '@mui/joy/CircularProgress';
-import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
 const PersonalDetails = ({personalData, setPersonalData, onComplete}) =>
@@ -56,13 +55,13 @@ const PersonalDetails = ({personalData, setPersonalData, onComplete}) =>
     <form className={personal.container} onSubmit={handleSubmit}>
         <input name="firstname" type="text" placeholder="First name" value={personalData.firstname} onChange={handleChange} required/>
         <input name="lastname" type="text" placeholder="Last name" value={personalData.lastname}  onChange={handleChange} required/>
-        <select name="gender" onChange={handleChange}>
+        <select name="gender" onChange={handleChange} required>
             <option value="" selected disabled>Gender</option>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
         </select>      
-        <input name="dob" value={personalData.dob} placeholder="Date of Birth (dd//mm/yyyy)" onChange={handleChange}/>
-        <input name="age" value={personalData.age} placeholder="Age" onChange={handleChange}/>
+        <input name="dob" value={personalData.dob} placeholder="Date of Birth (dd//mm/yyyy)" onChange={handleChange} required/>
+        <input name="age" value={personalData.age} placeholder="Age" onChange={handleChange} required/>
         <select name="sunsign" onChange={handleChange}>
             <option value="" selected disabled>Sun sign</option>
             <option value="Aries">Aries</option>
@@ -79,13 +78,13 @@ const PersonalDetails = ({personalData, setPersonalData, onComplete}) =>
             <option value="Pisces">Pisces</option>
         </select>
         <div className={personal.height}>
-            <select name="ft" onChange={handleChange}>
+            <select name="ft" onChange={handleChange} required>
                 <option value="" selected disabled>Height (ft)</option>
                 <option value="4">4</option>
                 <option value="5">5</option>
                 <option value="6">6</option>
             </select>
-            <select name="in" onChange={handleChange}>
+            <select name="in" onChange={handleChange} required>
                 <option value="" selected disabled>Height (in)</option>
                 <option value="0">0</option>
                 <option value="1">1</option>
@@ -101,7 +100,7 @@ const PersonalDetails = ({personalData, setPersonalData, onComplete}) =>
                 <option value="11">11</option>
             </select>
         </div>
-       <select name="education" onChange={handleChange}>
+       <select name="education" onChange={handleChange} required>
             <option value="" selected disabled>Highest education</option>
             <option value="7th Class">7th Class</option>
             <option value="10th Class">10th Class</option>
@@ -136,7 +135,7 @@ const PersonalDetails = ({personalData, setPersonalData, onComplete}) =>
             <option value="M.Sc">M.Sc</option>
             <option value="MSW">MSW</option>
         </select>}
-        <select name="sector" onChange={handleChange}>
+        <select name="sector" onChange={handleChange} required>
             <option value="" selected disabled>Sector</option>
             <option value="Private">Private</option>
             <option value="Government">Government</option>

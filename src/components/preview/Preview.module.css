@@ -5,6 +5,7 @@
     background-color: var(--primary-background);
     padding: 20px;
     padding-top: 80px;
+    line-height: 30px;
 }
 
 .profile

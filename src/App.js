@@ -6,11 +6,13 @@ import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import { SnackbarProvider } from 'notistack';
 import Homepage from './pages/homepage/Homepage';
 import SignIn from './components/signin/SignIn';
+import { RegisterProvider } from './contextapi/RegisterContext';
 
 function App() 
 {
   return (
   <div className="App">
+    <RegisterProvider>
     <SnackbarProvider anchorOrigin={{ horizontal: 'center', vertical: 'top' }}>
       <Router>
         <Routes>
@@ -23,6 +25,7 @@ function App()
         </Routes>
       </Router>
     </SnackbarProvider>
+    </RegisterProvider>
   </div>
   );
 }

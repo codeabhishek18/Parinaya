@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import { db } from '../../firebase'
-import { collection, getDocs } from 'firebase/firestore'
+import { auth, db } from '../../firebase'
+import { collection, doc, getDoc, getDocs } from 'firebase/firestore'
 import profiles from './Profiles.module.css'
 import Dashboard from '../dashboard/Dashboard'
 import { useNavigate } from 'react-router-dom'
@@ -29,6 +29,17 @@ const Profiles = () =>
 
     useEffect(()=>
     {
+        const userid = auth.currentUser?.uid;
+        const isAdmin = async () =>
+        {
+            const docRef = doc(db, 'admin', userid);
+            const snapshot = await getDoc(docRef);
+            if(snapshot.exists())
+                enqueueSnackbar(`Welcome back, ${auth.currentUser.displayName}`);
+            else
+                navigate('/')
+        }
+        userid ? isAdmin() : navigate('/signin');
         getProfileData();
     },[])
 
